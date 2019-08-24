@@ -1,4 +1,4 @@
-import pymongo
+from flask_pymongo import PyMongo
 import flask 
 import os 
 from flask import (
@@ -14,5 +14,12 @@ client = pymongo.MongoClient(conn)
 
 db=client.Pokemon_Database
 
-data=db.pokedatabase.find()
+app = Flask(__name__)
+app.config["MONGO_URI"] = "mongodb://localhost:27020/Pokemon_Database"
+mongo = PyMongo(app)
 
+@app.route("/")
+def home_page():
+    data = mongo.db.pokemon.find()
+    return render_template("index.html",
+        data=data)
