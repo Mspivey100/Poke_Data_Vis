@@ -42,9 +42,9 @@ def getGraphCount():
         'Rock':0,
         'Dark':0,
         'Fairy':0,
-        'Flying:':0,
+        'Flying':0,
         'Ground':0,
-        'Posion':0,
+        'Poison':0,
         'Steel':0,
         'Water':0,
         'Dragon':0,
@@ -64,9 +64,9 @@ def getGraphCount():
         'Rock':0,
         'Dark':0,
         'Fairy':0,
-        'Flying:':0,
+        'Flying':0,
         'Ground':0,
-        'Posion':0,
+        'Poison':0,
         'Steel':0,
         'Water':0,
         'Dragon':0,
@@ -79,10 +79,21 @@ def getGraphCount():
     }
     data = mongo.db.pokemon.find()
     for types in data:
-        if types['Type 1']=='Ice' or types['Type 2']=='Ice' and types['Generation']=='1':
-            genrationOne['Ice']=genrationOne['Ice'] + 1
-        #elif types['Type 1']=='Ice' or types['Type 2']=='Ice' and types['Generation']=='2':
-         #   genrationTwo['Ice']=genrationTwo['Ice'] + 1
+        if types['Type 1'] in genrationOne:# and types['Generation']=='1':
+            firstType= types['Type 1']
+            secondType= types['Type 2']
+            try:
+                genrationOne[firstType]= genrationOne[firstType]+1 
+                genrationOne[secondType]=genrationOne[secondType]+1
+            except:
+                next
+
+        
+
+        #if types['Type 2'] in genrationOne and types['Generation']=='1':
+            #secondType= types['Type 2']
+            #genrationOne[secondType]= genrationOne[secondType]+1
+        
     return genrationOne 
         
         
