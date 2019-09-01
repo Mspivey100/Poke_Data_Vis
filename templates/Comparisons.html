@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <link rel="icon" 
+	<link rel="icon" 
 		type="image/png" 
 		href="https://vignette.wikia.nocookie.net/pokemonmmo/images/4/4c/Pokeball.png/revision/latest?cb=20140922213610">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
     <title>PokePage</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -33,7 +35,7 @@
     		<div class="container-fluid">
             	<div class="navbar-header">
                 	<a class="navbar-brand" href="Comparisons.html"><span class="latitude">Gotta Catch 'Em All!</a>
-                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls=" navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls=" navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 	                <span class="navbar-toggler-icon"></span>
 	                </button>
                 </div>
@@ -72,8 +74,14 @@
                     		<div class="content">
                         		<div class="row">
                         			<div class="col-xs-12 col-sm-12 col-md-6">
-	                					<h2>vs. Max Temperature</h2>
-	              						<a href="viz 1.html"><img class="img-fluid" src="./output_data/Fig1.png" alt="Latitude vs. Max Temperature" height="500" width="500"></a>
+										<h2>Types</h2>
+										<div id="bar"></div>
+											d3.json('/graphcount').then(function(genrationOne) {
+												var layout = {margin: {t:0}}
+												var BAR = document.getElementById('bar');
+												Plotly.plot("bar", genrationOne, layout)
+											})
+	              						<!-- <a href="viz 1.html"><img class="img-fluid" src="./output_data/Fig1.png" alt="Latitude vs. Max Temperature" height="500" width="500"></a> -->
 	           						</div>
 	           						<div class="col-xs-12 col-sm-12 col-md-6">
 	              						<h2>vs. Humidity</h2>

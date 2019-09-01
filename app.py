@@ -71,7 +71,7 @@ def getGraphCount():
             except:
                 next 
         
-    return genrationOne 
+    return jsonify(genrationOne) 
         
         
 @app.route('/avgtotalstats') 
@@ -104,7 +104,7 @@ def getTotalStats():
             print(f'{statsByGenCounter}')
             statsByGen[pokeGen] += int(pokeStats)
     avgStatsByGen = {k :math.ceil( statsByGen[k] / statsByGenCounter[k] ) for k in statsByGen}
-    return avgStatsByGen
+    return jsonify(avgStatsByGen)
     
 
 if __name__ == "__main__":

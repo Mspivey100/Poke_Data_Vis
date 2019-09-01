@@ -16,3 +16,5 @@ for each in reader:
     for field in header:
         row[field]=each[field]
     coll.insert_one(row)
+
+return db.pokemon
