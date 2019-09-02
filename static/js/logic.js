@@ -1,4 +1,4 @@
 
-d3.json('/graphcount', function (data) {
-  console.log(data);
+d3.json('/pokedex', function (data) {
+  request.post(data)
 });

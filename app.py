@@ -105,8 +105,17 @@ def getTotalStats():
             statsByGen[pokeGen] += int(pokeStats)
     avgStatsByGen = {k :math.ceil( statsByGen[k] / statsByGenCounter[k] ) for k in statsByGen}
     return avgStatsByGen
-    
 
+@app.route('/pokedex',methods =['GET','POST'])
+def PokeDex():
+    if request.method == 'POST':
+        PokemonName=request.form.get('Name')
+        data = mongo.db.pokemon.find_one({'Name': Name })
+        print (data)
+    return 'data'
+
+
+    
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)
 
