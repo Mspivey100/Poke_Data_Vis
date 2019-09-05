@@ -31,9 +31,9 @@
     	<nav class="navbar navbar-inverse">
     		<div class="container-fluid">
             	<div class="navbar-header">
-                	<a class="navbar-brand" href="Comparisons.html"><span class="latitude">Gotta Catch 'Em All!</a>
-                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls=" navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> -->
-	                <span class="navbar-toggler-icon"></span>
+                	<a class="navbar-brand" href="Comparisons.html"><span class="latitude">Gotta Catch 'Em All</span></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls=" navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> -->
+	                	<span class="navbar-toggler-icon"></span>
 	                </button>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
@@ -58,39 +58,56 @@
                 </ul>
 			</div>
         </nav>
-	        
-	    <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                	<div class="col-md-12">
-                		<div class="box">
-                    		<div class="header">
-                    			<h1 class="title">Pokemon Battle Stats</h1>
-	              				<p class="category">Click on any Poke-plot for an analysis!</p>
-	              			</div>
-                    		<div class="content">
-                        		<div class="row">
-                        			<div class="col-xs-12 col-sm-12 col-md-6">
-	                					<h2>Stat Compare</h2>
-	              						<a href="viz 1.html"><img class="img-fluid" src="../static/js/StatCompare.js" alt="StatCompareheight="500" width="500"></a>
-	           						</div>
-	           						<div class="col-xs-12 col-sm-12 col-md-6">
-	              						<h2>Types By Generation</h2>
-	              						<a href="viz 2.html"><img class="img-fluid" src="../static/js/TypesByGeneration.js" alt="TypesByGeneration" height="500" width="500"></a>
-	           						</div>
-	            					<div class="col-xs-12 col-sm-12 col-md-6">
-	               						<h2>Stats By Generation</h2>
-	               						<a href="viz 3.html"><img class="img-fluid" src="../static/js/StatsByGeneration.js" alt="StatsByGeneration" height="500" width="500"></a>
-	            					</div>
-	            					<div class="col-xs-12 col-sm-12 col-md-6">
-	               						<h2>Individual Stats</h2>
-								 		<a href="viz 4.html"><img class="img-fluid" src="../static/js/IndividualStats.js" alt="IndividualStats" height="500" width="500"></a>
-									</div>	 
-	          					</div>
-	          				</div>
+	</div>        
+	<div class="content">
+        <div class="container-fluid">
+            <div class="row">
+            	<div class="col-md-12">
+            		<div class="box">
+                		<div class="header">
+                			<h1 class="title">Pokemon Battle Stats</h1>
+	          				<p class="category">Click on any Poke-plot for an analysis!</p>
 	          			</div>
-					</div>
-				</div>
+                		<div class="content">
+                    		<div class="row">
+                    			<div class="col-xs-12 col-sm-12 col-md-6">
+									<h2>Stat Compare</h2>
+									<form class="form-inline">
+										<div class="form-group">
+											<label for="pokemonA">Pokemon A</label>
+											<input type="text" class="form-control" id="pokemonInputA" placeholder="Enter your first Pokemon">
+										</div>
+										<div class="form-group">
+											<label for="pokemonB">PokemonB</label>
+											<input type="text" class="form-control" id ="pokemonInputB" placeholder="Enter your second Pokemon">
+										</div>
+										<button id="SubmitPokemonA" class="form-control" class="btn btn-default">Plot PokeStats</button>
+									</form>
+									<div id="statComparePlot"></div>
+									<script src="../static/js/StatCompare.js"></script>
+          						</div>
+            					<div class="col-xs-12 col-sm-12 col-md-6">
+               						<h2>Stats By Type</h2>
+									<a href="viz 3.html"><img class="img-fluid" src="../static/js/StatsByType.js" alt="StatsByType" height="500" width="500"></a>
+									<div id ="StatsByType"></div>
+									<script src="../static/js/StatsByType.js"></script>   
+            					</div>
+            					<div class="col-xs-12 col-sm-12 col-md-6">
+									<h2>Individual Stats</h2>
+									<form class="form-inline">
+										<div class="form-group">
+											<label for="pokemonC">Search For Pokemon</label>
+											<input type="text" class="form-control" id="pokemonInputC" placeholder="Enter your Pokemon">
+										</div>
+										<button id="SubmitPokemonC" class="form-control" class="btn btn-default">Plot PokeStat</button>
+									</form>
+									<div id="IndividualStats"></div>
+									<script src="../static/js/IndividualStats.js"></script>
+									<a href="viz 4.html"><img class="img-fluid" src="../static/js/IndividualStats.js" alt="IndividualStats" height="500" width="500"></a>
+							</div>	 
+	          			</div>
+	          		</div>
+	        	</div>
 			</div>
 		</div>
 	</div>
