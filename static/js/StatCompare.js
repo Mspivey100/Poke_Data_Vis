@@ -31,10 +31,10 @@ function buildStatComparePlot(pokemonA,pokemonB) {
             type: "bar",
             name: name,
             x: automap,
-            y: PokemonStatsA,
+            y: PokemonStatsA
         };
         var PokemonB = datalist.filter(name = PokemonB);
-        var nameB = pokemonB.Name;
+        var nameB = PokemonB.Name;
         var TotalB = PokemonB.Total;
         var HPB = PokemonB.HP;
         var AttackB = PokemonB.Attack;
@@ -48,8 +48,8 @@ function buildStatComparePlot(pokemonA,pokemonB) {
             type: "bar",
             name: name,
             x:automap,
-            y: PokemonStatsB,
-        }
+            y: PokemonStatsB
+        };
         var data = [trace1, trace2];
         var layout = { 
             title: "Stat Compare",
