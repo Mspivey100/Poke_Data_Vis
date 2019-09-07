@@ -1,4 +1,4 @@
-function handleSubmitStatCompare() {
+function handleSubmitStatCompareA() {
     d3.event.preventDefault();
 
     var pokemonA = d3.select("#pokemonInputA").node().value;
@@ -12,49 +12,63 @@ function handleSubmitStatCompare() {
     buildStatComparePlot(pokemonA,pokemonB);
 }
 
-function buildStatComparePlot(pokemonA,pokemonB) {
+function buildStatComparePlot(pokemonA, pokemonB) {
     var url = "/pokemon";
-    d3.json(url).then(function(datalist) {
-        console.log(datalist);
-        var PokemonA = datalist.filter(name = pokemonA);
-        var nameA = PokemonA.Name;
-        var TotalA = PokemonA.Total;
-        var HPA = PokemonA.HP;
-        var AttackA = PokemonA.Attack;
-        var DefenseA = PokemonA.Defense;
-        var SpAtkA = PokemonA.SpAtk;
-        var SpDefA = PokemonA.SpDef;
-        var SpeedA = PokemonA.Speed;
-        var PokemonStatsA = [nameA, TotalA,HPA,AttackA,,DefenseA,SpAtkA,SpDefA,SpeedA];
+    d3.json(url).then(function(response) {
+        console.log(response);
+        var filteredPokemonA = response.filter(function(item) {
+            return item["Name"] === pokemonA;
+        });
+        var PokemonA = filteredPokemonA[0];
+        console.log(`Pokemon A is ${Object.getOwnPropertyNames(PokemonA)}`)
+        var PokemonStatsA = {
+            Total: PokemonA["Total"], 
+            HP: PokemonA["HP"], 
+            Attack: PokemonA["Attack"], 
+            Defense: PokemonA["Defense"], 
+            SpAtk: PokemonA["SpAtk"],
+            SpDef: PokemonA["SpDef"], 
+            Speed: PokemonA["Speed"]}
+        console.log(PokemonStatsA);
 
-        var trace1 = {
-            type: "bar",
-            name: name,
-            x: automap,
-            y: PokemonStatsA
-        };
-        var PokemonB = datalist.filter(name = PokemonB);
-        var nameB = PokemonB.Name;
-        var TotalB = PokemonB.Total;
-        var HPB = PokemonB.HP;
-        var AttackB = PokemonB.Attack;
-        var DefenseB = PokemonB.Defense;
-        var SpAtkB= PokemonB.SpAtk;
-        var SpDefB = PokemonB.SpDef;
-        var SpeedB = PokemonB.Speed;
-        var PokemonStatsB = [nameB, TotalB,HPB,AttackB,,DefenseB,SpAtkB,SpDefB,SpeedB];
+        var traceA = {
+            x: Object.getOwnPropertyNames(PokemonStatsA),
+            y: Object.values(PokemonStatsA),
+            name: PokemonA["Name"],
+            type: "bar"
+        }
 
-        var trace2 = {
-            type: "bar",
-            name: name,
-            x:automap,
-            y: PokemonStatsB
-        };
-        var data = [trace1, trace2];
+        var filteredPokemonB = response.filter(function(item) {
+            return item["Name"] === pokemonB;
+        });
+        PokemonB = filteredPokemonB[0];
+        console.log(`Pokemon B is ${Object.getOwnPropertyNames(PokemonB)}`)
+        var PokemonStatsB = {
+            Total: PokemonB["Total"], 
+            HP: PokemonB["HP"], 
+            Attack: PokemonB["Attack"], 
+            Defense: PokemonB["Defense"], 
+            SpAtk: PokemonB["SpAtk"],
+            SpDef: PokemonB["SpDef"], 
+            Speed: PokemonB["Speed"]}
+        console.log(PokemonStatsB);
+
+        var traceB = {
+            x: Object.getOwnPropertyNames(PokemonStatsB),
+            y: Object.values(PokemonStatsB),
+            name: PokemonB["Name"],
+            type: "bar"
+        }
+
+        var data = [traceA, traceB];
         var layout = { 
             title: "Stat Compare",
             barmode: "group"
         };
         Plotly.newPlot("statComparePlot", data, layout);
+        console.log(Object.values(PokemonStatsA));
     });
+      
 }
+
+d3.select("#SubmitPokemonA").on("click", handleSubmitStatCompareA);

@@ -1,43 +1,45 @@
-function handleSubmitStatCompare() {
+function handleSubmitIndividual() {
     d3.event.preventDefault();
 
-    var pokemonA = d3.select("#pokemonInputC").node().value;
-    console.log(pokemonA);
+    var pokemonC = d3.select("#pokemonInputC").node().value;
+    console.log(pokemonC);
     d3.select("#pokemonInputC").node().value = "";
 
-    var pokemonB = d3.select("#pokemonInputC").node().value;
-    console.log(pokemonB);
-    d3.select("#pokemonInputC").node().value = "";
-
-    buildStatComparePlot(pokemonC);
+    buildStatIndividual(pokemonC);
 }
 
-function buildStatComparePlot(pokemonC) {
+function buildStatIndividual(pokemonC) {
     var url = "/pokemon";
-    d3.json(url).then(function(datalist) {
-        console.log(datalist);
-        var PokemonC = datalist.filter(name = pokemonC);
-        var nameC = PokemonC.Name;
-        var TotalC = PokemonC.Total;
-        var HPC = PokemonC.HP;
-        var AttackC = PokemonC.Attack;
-        var DefenseC = PokemonC.Defense;
-        var SpAtkC = PokemonC.SpAtk;
-        var SpDefC = PokemonC.SpDef;
-        var SpeedC = PokemonC.Speed;
-        var PokemonStatsC = [nameC, TotalC ,HPC ,AttackC ,,DefenseC ,SpAtkC ,SpDefC ,SpeedC ];
+    d3.json(url).then(function(response) {
+        console.log(response);
+        
+        var filteredPokemonC = response.filter(function(item) {
+            return item["Name"] === pokemonC;
+        });
+        PokemonC = filteredPokemonC[0];
+        console.log(`Pokemon C is ${Object.getOwnPropertyNames(PokemonC)}`)
+        var PokemonStatsC = {
+            Total: PokemonC["Total"], 
+            HP: PokemonC["HP"], 
+            Attack: PokemonC["Attack"], 
+            Defense: PokemonC["Defense"], 
+            SpAtk: PokemonC["SpAtk"],
+            SpDef: PokemonC["SpDef"], 
+            Speed: PokemonC["Speed"]}
+        console.log(PokemonStatsC);
 
-        var trace = {
-            type: "bar",
-            name: name,
-            x: PokemonStatsC,
-            y: Range(auntomap)
-        };
-        var data = [trace];
+        var traceC = {
+            x: Object.getOwnPropertyNames(PokemonStatsC),
+            y: Object.values(PokemonStatsC),
+            name: PokemonC["Name"],
+            type: "bar"
+        }
+
+        var data = [traceC];
         var layout = { 
-            title: "Stat Compare",
-            barmode: "group"
+            title: "Individual Stats"
         };
         Plotly.newPlot("IndividualStats", data, layout);
-    });
-}
+        console.log(Object.values(PokemonStatsC));
+
+d3.select("#SubmitPokemonC").on("click", handleSubmitIndividual);

@@ -15,7 +15,7 @@ from bson import json_util
 from bson.json_util import dumps
 
 app = Flask(__name__)
-app.config ['MONGO_URI'] = 'mongodb://localhost:27020/Pokemon_Database'
+app.config ['MONGO_URI'] = 'mongodb://localhost:27017/Pokemon_Database'
 mongo = PyMongo(app)
 
 @app.route("/")
@@ -24,12 +24,11 @@ def home():
 
 @app.route('/pokemon')
 def getPokemonData():
-    data = mongo.db.pokemon.find()
+    data = mongo.db.pokedatabase.find()
     datalist=[]
     for item in data:
         item.pop("_id")
-        ObjectName = [v for v in item.values()]
-        datalist.append(ObjectName)
+        datalist.append(item)
     return jsonify(datalist)
 
 @app.route('/graphcount')
@@ -54,7 +53,6 @@ def getGraphCount():
         'Ghost':0,
         'Ice':0,
         'Psychic':0,
-        'Water':0,
         'Generation':1
     }
     
