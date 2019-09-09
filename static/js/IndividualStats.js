@@ -41,5 +41,6 @@ function buildStatIndividual(pokemonC) {
         };
         Plotly.newPlot("IndividualStats", data, layout);
         console.log(Object.values(PokemonStatsC));
-
+    });
+}
 d3.select("#SubmitPokemonC").on("click", handleSubmitIndividual);

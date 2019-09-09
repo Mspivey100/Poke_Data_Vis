@@ -20,6 +20,6 @@ var svg = d3
 var chartGroup = svg.append("g")
 .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
-d3.json('/graphcount', function (data) {
+d3.json('/pokemon', function (data) {
   console.log(data);
 });

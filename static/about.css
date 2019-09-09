@@ -1,11 +1,10 @@
 body {
-  background: url(../background1.png);
-  object-fit: contain;
+  background: url(background2.png);
 }
 
 
 .skyblue {
-  background: blue;
+  background: rgb(126, 6, 6);
 }
 
 .box{
@@ -23,7 +22,7 @@ body {
   margin-right: 0px;
   margin-left: 0px;
   padding: 25px;
-  background: red;
+  background:goldenrod;
 }
 
 
@@ -47,16 +46,17 @@ p{
 }
 
 
-.c-d{color: white;
+.c-d{color:black;
   font-size: 25px;
 }
 
 .latitude {
-  color: white;
+  color:black;
   font-family: verdana;
   font-size: 40px;
-  background-color:red;
-  border: 10px solid red;
+  font-style: strong;
+  background-color:goldenrod;
+  border: 10px solid goldenrod;
     padding: 15px;
 }
 
