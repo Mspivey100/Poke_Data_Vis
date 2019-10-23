@@ -22,6 +22,11 @@ mongo = PyMongo(app)
 def home():
     return render_template("index.html")
 
+
+@app.route("/About")
+def About():
+    return render_template("assets/About.html")
+
 @app.route('/pokemon')
 def getPokemonData():
     data = mongo.db.pokedatabase.find()
